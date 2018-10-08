@@ -10,8 +10,8 @@ def cluster = new Cluster.Builder()
 cluster.withCloseable({
 		def session = cluster.newSession()
 		session.withCloseable({
-			session.execute('select * from testv2.books;').all().each({ r ->
-						println String.join(" | ", r.getString(0), r.getString(1), r.getInt(2) as String)
+			session.execute('select * from testv2.books;').all().each({
+						println String.join(" | ", it.getString(0), it.getString(1), it.getInt(2) as String)
 					}
 				)
 			}
